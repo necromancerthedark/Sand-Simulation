@@ -22,6 +22,10 @@ int next_gen[ji][si];
 Uint32 framestart;
 int frameTime;
 
+//1 for sand
+//2 for water
+//0 for void
+
 int main(int argc, char** argv) {
 	
 	srand(static_cast<unsigned int>(time(0)));
@@ -94,31 +98,48 @@ current[5][2] =2;
 					{
 						for (int j = 0; j < cols; j++) {
 
-            if (j+1<row && i-1>=0 && i+1<cols){
-                    if( current[i][j]==1 && current[i][j+1]==0){ 
-                            next_gen[i][j]=0;
-                            next_gen[i][j+1] = 1;}
-					else if (current[i][j]==1&& current[i+1][j+1]==0){ 
-                            next_gen[i][j]=0;
-                            next_gen[i+1][j+1]=1;}
-					else if (current[i][j]==1 && current[i-1][j+1]==0){ 
-                            next_gen[i][j]=0;
-                            next_gen[i-1][j+1]=1;
+							if (j+1<row && i-1>=0 && i+1<cols){
+									if( current[i][j]==1 && current[i][j+1]==0){ 
+											next_gen[i][j]=0;
+											next_gen[i][j+1] = 1;}
+									else if (current[i][j]==1&& current[i+1][j+1]==0){ 
+											next_gen[i][j]=0;
+											next_gen[i+1][j+1]=1;}
+									else if (current[i][j]==1 && current[i-1][j+1]==0){ 
+											next_gen[i][j]=0;
+											next_gen[i-1][j+1]=1;
+										}
+									else if( current[i][j]==2 && current[i][j+1]==0){ 
+											next_gen[i][j]=0;
+											next_gen[i][j+1] = 2;}
+									
+									else if (current[i][j]==2&& current[i+1][j+1]==0){ 
+											next_gen[i][j]=0;
+											next_gen[i+1][j+1]=2;}
+									else if (current[i][j]==2 && current[i-1][j+1]==0){ 
+											next_gen[i][j]=0;
+											next_gen[i-1][j+1]=2;
+										}
 
-						}
-                    if( current[i][j]==2 && current[i][j+1]==0){ 
-                            next_gen[i][j]=0;
-                            next_gen[i][j+1] = 2;}
-					}
-				}
-				}
+									else if (current[i][j]==2 && current[i+1][j]==0){ 
+											next_gen[i][j]=0;
+											next_gen[i+1][j]=2;
+
+										}
+
+									else if (current[i][j]==2 && current[i-1][j]==0){ 
+											next_gen[i][j]=0;
+											next_gen[i-1][j]=2;
+										}
+								}
+				}}
 				counter++;
 				if (counter%20==0){
 						next_gen[150][1] = 1;
 				}
 				else if (counter%10) {
 				
-						next_gen[147][1] = 1;
+						next_gen[20][1] = 2;
 
 				}
 
